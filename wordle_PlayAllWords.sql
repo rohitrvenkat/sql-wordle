@@ -3,7 +3,7 @@
 set nocount on
 
 --choose starting word
-declare @starting_word char(5) = 'SHALT'
+declare @starting_word char(5) = 'SLANT'
 ,		@player varchar(20) = 'Rohit'
 
 --clear all plays for that player
@@ -34,7 +34,7 @@ while @current_word_date <= '2027-10-20'  --the last date in Wordle
 			if @guess_count > 20 --something is wrong, it should not take this long per word.  This is here to prevent infinite loops
 				break;
 
-			exec wordle_GetOptimalNextWord_RohitVenkat @player, @current_word_date, @NextGuess = @next_guess output,@IsDebugRun = 0			
+			exec wordle_GetOptimalNextWord_RohitVenkat2 @player, @current_word_date, @NextGuess = @next_guess output, @IsDebugRun = 0			
 		  end
 		set @current_word_date = dateadd(dd,1,@current_word_date)
   end
