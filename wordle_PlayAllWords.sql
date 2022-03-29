@@ -26,7 +26,7 @@ while @current_word_date <= '2027-10-20'  --the last date in Wordle
 		while coalesce(@l1,0)+coalesce(@l2,0)+coalesce(@l3,0)+coalesce(@l4,0)+coalesce(@l5,0) < 5
 		  begin
 			set @guess = @next_guess
-			exec wordle_PlayWord @player,@current_word_date,@guess, @L1 output, @L2 output, @L3 output, @L4 output, @L5 output , @IsDebugRun = 0
+			exec wordle_PlayWord @player, @current_word_date, @guess, @L1 output, @L2 output, @L3 output, @L4 output, @L5 output, @IsDebugRun = 0
 
 			select	@guess_count += 1,
 					@total_guesses += 1
@@ -34,7 +34,7 @@ while @current_word_date <= '2027-10-20'  --the last date in Wordle
 			if @guess_count > 20 --something is wrong, it should not take this long per word.  This is here to prevent infinite loops
 				break;
 
-			exec wordle_GetOptimalNextWord_RohitVenkat2 @player, @current_word_date, @NextGuess = @next_guess output, @IsDebugRun = 0			
+			exec wordle_GetOptimalNextWord_RohitVenkat_1 @player, @current_word_date, @NextGuess = @next_guess output, @IsDebugRun = 0			
 		  end
 		set @current_word_date = dateadd(dd,1,@current_word_date)
   end
